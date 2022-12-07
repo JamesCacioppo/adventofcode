@@ -1,11 +1,9 @@
-f = open('test3.txt', 'r')
 
-lines = []
-
-for i in f.readlines():
-    lines.append(i)
-
-f.close()
+with open('test3.txt', 'r') as f:
+    #lines = f.readlines()
+    lines = f.read().splitlines()
+    # for x in f.readlines():
+        # lines.append(x.strip())
 
 values = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
 
@@ -22,15 +20,15 @@ for group in range(num_groups):
         elves_in_group.append(elf)
     
     print("Elves in group:", elves_in_group)
-    print("elf", elves_in_group[0], "line", lines[elves_in_group[0]], end="")
-    print("elf", elves_in_group[1], "line", lines[elves_in_group[1]], end="")
-    print("elf", elves_in_group[2], "line", lines[elves_in_group[2]], end="")
+    print(f"elf {elves_in_group[0]} line {lines[elves_in_group[0]]}")
+    print(f"elf {elves_in_group[1]} line {lines[elves_in_group[1]]}")
+    print(f"elf {elves_in_group[2]} line {lines[elves_in_group[2]]}")
 
     for char in lines[elves_in_group[0]]:
         if char in lines[elves_in_group[1]] and char in lines[elves_in_group[2]]:
             badge = char
             print("For loop badge", badge)
-            break
+            # break
 
     print("Outside loop Badge", badge)
     print("Badge value", values.find(badge) + 1)
