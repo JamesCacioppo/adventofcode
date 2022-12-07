@@ -15,19 +15,24 @@ num_groups = int(len(lines) / 3)
 total_value = 0
 
 for group in range(num_groups):
-    print("Group", group)
+    print("\nGroup", group)
     elves_in_group = []
     for elf_in_group in range(3):
         elf = 3 * group + elf_in_group
         elves_in_group.append(elf)
     
     print("Elves in group:", elves_in_group)
+    print("elf", elves_in_group[0], "line", lines[elves_in_group[0]], end="")
+    print("elf", elves_in_group[1], "line", lines[elves_in_group[1]], end="")
+    print("elf", elves_in_group[2], "line", lines[elves_in_group[2]], end="")
 
     for char in lines[elves_in_group[0]]:
         if char in lines[elves_in_group[1]] and char in lines[elves_in_group[2]]:
             badge = char
+            print("For loop badge", badge)
+            break
 
-    print("Badge", badge)
+    print("Outside loop Badge", badge)
     print("Badge value", values.find(badge) + 1)
     total_value = total_value + values.find(badge) + 1
     print("The total is now", total_value)
