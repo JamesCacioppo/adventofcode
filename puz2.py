@@ -1,15 +1,26 @@
-# "A": "rock",
-# "B": "paper",
-# "C": "scissors",
-# "X": "rock",
-# "Y": "paper",
-# "Z": "scissors"
-# "rock": 1,
-# "paper": 2,
-# "scissors": 3,
-# "loss": 0,
-# "draw": 3,
-# "win": 6
+opp_play = {
+    "A": "rock",
+    "B": "paper",
+    "C": "scissors"
+}
+
+shape_value = {
+    "rock": 1,
+    "paper": 2,
+    "scissors": 3
+}
+
+result = {
+    "X": "lose",
+    "Y": "draw",
+    "Z": "win"
+}
+
+result_value = {
+    "loss": 0,
+    "draw": 3,
+    "win": 6
+}
 
 f = open('input2.txt', 'r')
 
@@ -24,71 +35,55 @@ total_score = 0
 
 for i in lines:
     round = i.split()
-    print("Opponent played", round[0])
-    print("You play", round[1])
+    print("Opponent played", round[0], "which is", opp_play[round[0]])
+    print("You need to", round[1], "which is", result[round[1]])
 
     # Determine win/loss
     if round[0] == "A": # Rock
-        print("Opponent played rock")
-
         match round[1]:
-            case "X": # Rock
-                result = "draw"
-            case "Y": # Paper
-                result = "win"
-            case "Z": # Scissors
-                result = "loss"
+            case "X": # Lose
+                play = "scissors"
+            case "Y": # Draw
+                play = "rock"
+            case "Z": # Win
+                play = "paper"
 
     elif round[0] == "B": # Paper
-        print("Opponent played paper")
-
         match round[1]:
-            case "X": # Rock
-                result = "loss"
-            case "Y": # Paper
-                result = "draw"
-            case "Z": # Scissors
-                result = "win"
+            case "X": # Lose
+                play = "rock"
+            case "Y": # Draw
+                play = "paper"
+            case "Z": # Win
+                play = "scissors"
 
     elif round[0] == "C": # Scissors
-        print("Opponent played Scissors")
-
         match round[1]:
-            case "X": # Rock
-                result = "win"
-            case "Y": # Paper
-                result = "loss"
-            case "Z": # Scissors
-                result = "draw"
+            case "X": # Lose
+                play = "paper"
+            case "Y": # Draw
+                play = "scissors"
+            case "Z": # Win
+                play = "rock"
 
-    print("The result is a", result)
+    print("You need to play", play)
 
     sub_score = 0
 
-    match result:
-        case "win":
-            sub_score += 6
-            print(sub_score, "points were awarded for a", result)
-        case "draw":
-            sub_score += 3
-            print(sub_score, "points were awarded for a", result)
-        case "loss":
-            print("No points were awarded for a", result)
-    
     match round[1]:
-        case "X":
-            sub_score += 1
-            print("1 point was awarded for Rock")
-            print("sub_score is now", sub_score)
-        case "Y":
-            sub_score += 2
-            print("2 points were awarded for Paper")
-            print("sub_score is now", sub_score)
         case "Z":
+            sub_score += 6
+            print(sub_score, "points were awarded for a", result["Z"])
+        case "Y":
             sub_score += 3
-            print("3 points were awarded for Scissors")
-            print("sub_score is now", sub_score)
+            print(sub_score, "points were awarded for a", result["Y"])
+        case "X":
+            print("No points were awarded for a", result["X"])
+
+    sub_score += shape_value[play]
+    print(shape_value[play], "points awarded for", play)
+    print("sub_score is ", sub_score, "for this round.")
     
     total_score += sub_score
-
-print("The total score:", total_score)
+    print("The total score is now", total_score)
+    print()
