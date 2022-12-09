@@ -9,7 +9,8 @@ with open('input4.txt', 'r') as f:
     
 # print(lines)
 
-count = 0
+part1_count = 0
+part2_count = 0
 
 for pair in lines:
     # print(pair) # pair is a string
@@ -29,9 +30,15 @@ for pair in lines:
 
     if all(item in section_a for item in section_b):
         print(f"Section a found in section b")
-        count += 1
+        part1_count += 1
     elif all(item in section_b for item in section_a):
         print(f"Section b found in section a")
-        count += 1
+        part1_count += 1
     
-    print(f"The count is now {count}")
+    print(f"The part 1 count is now {part1_count}")
+
+    if any(item in section_a for item in section_b):
+        print(f"Overlap found")
+        part2_count += 1
+
+    print(f"The part 2 count is now {part2_count}")
