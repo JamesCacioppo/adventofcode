@@ -71,11 +71,12 @@ new_crates = reorg_crates(crates, number_of_columns)
 
 new_stacks = reorg_stack_as_list(new_crates, number_of_columns)
 
-# Now move the crates
+    # Now move the crates
 for i in range(len(moves)):
     short_moves = determine_move(moves[i])
+    insert_position = len(new_stacks[short_moves[2] - 1])
     for j in range(short_moves[0]):
-        new_stacks[short_moves[2] - 1].append(new_stacks[short_moves[1] - 1][-1])
+        new_stacks[short_moves[2] - 1].insert(insert_position, new_stacks[short_moves[1] - 1][-1])
         new_stacks[short_moves[1] - 1].pop(-1)
 
 print(f"The tops are {find_tops(new_stacks)}")
