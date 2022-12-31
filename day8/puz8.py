@@ -3,7 +3,7 @@ import sys
 def read_file(filename):
     with open(filename, 'r') as f:
         lines = f.read().splitlines()
-    return(lines)
+    return lines
 
 def is_tree_visible(lines, x, y):
     x_max = len(lines[y])
