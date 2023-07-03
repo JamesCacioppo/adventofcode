@@ -80,6 +80,11 @@ def sum_false_score(play: list) -> int:
         sum = sum + play[i].false_score
     return sum
 
+def execute(file_name: str):
+    lines = read_file(file_name)
+    false_sum = sum_false_score(create_rounds(lines))
+    print(f"[*] Day 2: The false total score is {false_sum}")
+
 if __name__ == '__main__':
     lines = read_file(sys.argv[1])
     false_sum = sum_false_score(create_rounds(lines))

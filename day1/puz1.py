@@ -24,11 +24,11 @@ def find_the_fattest_elf(elf_sums: list) -> int:
     elf_sums.sort(reverse=True)
     return elf_sums[0]
 
-def execute():
-    lines = read_file('input1.txt')
+def execute(file_name: str):
+    lines = read_file(file_name)
     elf_sums = sum_elves(lines)
     fatty = find_the_fattest_elf(elf_sums)
-    print(f"The fattest elf is carrying {fatty} calories")
+    print(f"[*] Day 1: The fattest elf is carrying {fatty} calories")
 
 if __name__ == '__main__':
     lines = read_file(sys.argv[1])
