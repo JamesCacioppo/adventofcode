@@ -11,7 +11,7 @@
             "program": "${file}",
             "console": "integratedTerminal",
             "justMyCode": true,
-            "args": ["inputs/day1_input.txt"]
+            "args": ["inputs/day3_input.txt"]
         }
     ]
 }
