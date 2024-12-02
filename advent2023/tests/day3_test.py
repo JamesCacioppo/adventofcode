@@ -44,13 +44,62 @@ def test_build_parts_list(day_three_file):
     assert parts_list[2].x_max == 4
     assert parts_list[2].y == 2
 
+    assert parts_list[3].number == 633
+    assert parts_list[3].x_min == 6
+    assert parts_list[3].x_max == 9
+    assert parts_list[3].y == 2
 
-def test_find_search_domain():
+    assert parts_list[4].number == 617
+    assert parts_list[4].x_min == 0
+    assert parts_list[4].x_max == 3
+    assert parts_list[4].y == 4
+
+    assert parts_list[5].number == 58
+    assert parts_list[5].x_min == 7
+    assert parts_list[5].x_max == 9
+    assert parts_list[5].y == 5
+
+    assert parts_list[6].number == 592
+    assert parts_list[6].x_min == 2
+    assert parts_list[6].x_max == 5
+    assert parts_list[6].y == 6
+
+    assert parts_list[7].number == 755
+    assert parts_list[7].x_min == 6
+    assert parts_list[7].x_max == 9
+    assert parts_list[7].y == 7
+
+    assert parts_list[8].number == 664
+    assert parts_list[8].x_min == 1
+    assert parts_list[8].x_max == 4
+    assert parts_list[8].y == 9
+
+    assert parts_list[9].number == 598
+    assert parts_list[9].x_min == 5
+    assert parts_list[9].x_max == 8
+    assert parts_list[9].y == 9
+
+
+def test_find_search_domain(day_three_file):
     line_length = 10
     part = day3.part(467, 0, 3, 0)
     assert day3.find_search_domain(part, line_length) == [0, 1, 2, 3]
     part = day3.part(114, 5, 8, 0)
     assert day3.find_search_domain(part, line_length) == [4, 5, 6, 7, 8]
+
+    # Let's go through every part in the file
+    parts_list = day3.build_parts_list(day_three_file)
+    assert day3.find_search_domain(parts_list[0], line_length) == [0, 1, 2, 3]
+    assert day3.find_search_domain(parts_list[1], line_length) == [4, 5, 6, 7, 8]
+    assert day3.find_search_domain(parts_list[2], line_length) == [1, 2, 3, 4]
+    assert day3.find_search_domain(parts_list[3], line_length) == [5, 6, 7, 8, 9]
+    assert day3.find_search_domain(parts_list[4], line_length) == [0, 1, 2, 3]
+    assert day3.find_search_domain(parts_list[5], line_length) == [6, 7, 8, 9]
+    assert day3.find_search_domain(parts_list[6], line_length) == [1, 2, 3, 4, 5]
+    assert day3.find_search_domain(parts_list[7], line_length) == [5, 6, 7, 8, 9]
+    assert day3.find_search_domain(parts_list[8], line_length) == [0, 1, 2, 3, 4]
+    assert day3.find_search_domain(parts_list[9], line_length) == [4, 5, 6, 7, 8]
+
     # Let's test some cases out of the real data
     line_length = 140
     part = day3.part(445, 13, 16, 133)
